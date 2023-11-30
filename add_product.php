@@ -65,7 +65,7 @@ if(!isset($_SESSION['user_name']) OR $_SESSION['user_name'] == ''){
                                 <div class="col-4">
                                     <div class="mb-3">
                                         <label class="form-label" for="exampleInputPassword2">Product Category</label>
-                                        <select class="form-select digits" name="prod_cat">
+                                        <select class="form-select digits" name="fk_cat_id">
                                             <option>1</option>
                                             <option>2</option>
                                             <option>3</option>
@@ -77,7 +77,7 @@ if(!isset($_SESSION['user_name']) OR $_SESSION['user_name'] == ''){
                                 <div class="col-4">
                                     <div class="mb-3">
                                         <label class="form-label" for="exampleInputPassword2">Product Sub-Category</label>
-                                        <select class="form-select digits" name="prod_sub_cat">
+                                        <select class="form-select digits" name="fk_sub_cat_id">
                                             <option>1</option>
                                             <option>2</option>
                                             <option>3</option>
@@ -159,6 +159,12 @@ if(!isset($_SESSION['user_name']) OR $_SESSION['user_name'] == ''){
                                             <input id="checkbox-primary" type="checkbox" name="featured">
                                             <label for="checkbox-primary">Featured</label>
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="exampleFormControlInput1">Product Description</label>
+                                        <textarea name="product_desc" class="form-control"></textarea>
                                     </div>
                                 </div>
                             </div>
