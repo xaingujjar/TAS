@@ -60,7 +60,6 @@ if(isset($_POST['update_cat'])){
 }
 
 
-
 ?>
 
 <!DOCTYPE html>
