@@ -24,7 +24,9 @@ if(isset($_GET['id'])){
 
 
 if(isset($_POST['add_cat'])){
+
     $prod_cat_name = $_POST['prod_cat_name'];
+
     $insert_query = "INSERT INTO `category`(`name`, `status`) VALUES ('{$prod_cat_name}', 1)";
     $run_query = mysqli_query($conn, $insert_query);
 
@@ -204,7 +206,10 @@ if(isset($_POST['update_cat'])){
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="myLargeModalLabel">Large modal</h4>
+                        <h4 class="modal-title " >
+                            <span id="cat_name_title"></span>
+                            (<span class="cat_id_title"></span>) |
+                        </h4>
                         <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -214,7 +219,7 @@ if(isset($_POST['update_cat'])){
                                     <div class="col-12">
                                         <div class="mb-3">
                                             <label class="form-label" for="exampleFormControlInput1">Product Category Name</label>
-                                            <input class="form-control"  type="text" name="prod_cat_name" id="prod_cat_name" >
+                                            <input class="form-control"   type="text" name="prod_cat_name" id="prod_cat_name" >
                                             <input class="form-control"  type="hidden" name="prod_cat_id" id="prod_cat_id" >
                                         </div>
                                     </div>
@@ -239,11 +244,12 @@ if(isset($_POST['update_cat'])){
     $(document).ready(function (){
         $('.edit_cat').click(function (){
             var cat_id = $(this).data('cat_id')
-            var cat_name = $(this).data('cat_name')
-
+            var cat_name = $(this).data('cat_name');
 
             $('#prod_cat_name').val(cat_name);
-            $('#prod_cat_id').val(cat_id);
+            $('#prod_cat_id').val(cat_id)
+            $('#cat_name_title').html(cat_name);
+            $('.cat_id_title').html(cat_id);
         })
     })
 </script>

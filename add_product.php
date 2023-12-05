@@ -65,24 +65,27 @@ if(!isset($_SESSION['user_name']) OR $_SESSION['user_name'] == ''){
                                 <div class="col-4">
                                     <div class="mb-3">
                                         <label class="form-label" for="exampleInputPassword2">Product Category</label>
-                                        <select class="form-select digits" name="fk_cat_id">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
+                                        <select class="form-select digits" name="fk_cat_id" id="cat_id">
+                                            <option>Select Category</option>
+                                            <?php
+                                            $select_cat = "SELECT * FROM category";
+                                            $select_cat_run = mysqli_query($conn, $select_cat);
+                                            $fetch_cat = mysqli_fetch_assoc($select_cat_run);
+                                            do{
+                                                ?>
+                                                <option value="<?=$fetch_cat['id']?>"><?=$fetch_cat['name']?></option>
+                                                <?php
+                                            }while($fetch_cat = mysqli_fetch_assoc($select_cat_run))
+                                            ?>
+
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-4">
                                     <div class="mb-3">
                                         <label class="form-label" for="exampleInputPassword2">Product Sub-Category</label>
-                                        <select class="form-select digits" name="fk_sub_cat_id">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
+                                        <select class="form-select digits" name="fk_sub_cat_id" id="sub_cats">
+                                            <option>Select Category</option>
                                         </select>
                                     </div>
                                 </div>
@@ -185,5 +188,22 @@ if(!isset($_SESSION['user_name']) OR $_SESSION['user_name'] == ''){
     </div>
 </div>
 <?php include ("include/js.php")?>
+<script>
+    $(document).ready(function (){
+         $('#cat_id').change(function (){
+             var cat_id = $(this).val();
+
+             $.ajax({
+                 url: 'ajax_get_sub_cat.php',
+                 type: 'POST',
+                 data: { cat_id:cat_id },
+                 success: function(response){
+                     //   alert(response);
+                     $('#sub_cats').html(response);
+                 }
+             });
+         })
+    })
+</script>
 </body>
 </html>
